@@ -1,5 +1,5 @@
 # react-redux-sample
 
-##start project 
+## start project 
 npm install
 npm start
