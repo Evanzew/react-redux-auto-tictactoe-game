@@ -17,4 +17,3 @@ npm start
 > Game Page Preview
 
 ![alt text](/src/assets/preview-game.jpg "Game page preview")
-
