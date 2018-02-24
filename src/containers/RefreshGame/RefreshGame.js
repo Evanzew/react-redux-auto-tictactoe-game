@@ -1,11 +1,11 @@
-import { connect } from "react-redux";
-import Refresh from "../../components/Refresh/Refresh";
+import { connect } from 'react-redux';
+import Refresh from '../../components/Refresh/Refresh';
 import {
   toggleGamer,
   goBackHistory,
   deleteHistory,
   nextRound
-} from "../../actions/action";
+} from '../../actions/action';
 
 let player1Count;
 let round;
@@ -16,16 +16,19 @@ const mapStateToProps = (state, ownProps) => {
   player2Count = state.round.player2;
   round = state.round.round;
   const points = player1Count * 50;
-  return { points };
+  const move = state.stepNumber;
+  return { points, move };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    gameRestart: () => {
-      dispatch(nextRound(++round, player1Count, player2Count));
-      dispatch(goBackHistory(0));
-      dispatch(toggleGamer(true));
-      dispatch(deleteHistory(0));
+    gameRestart: move => {
+      if (move !== 0) {
+        dispatch(nextRound(++round, player1Count, player2Count));
+        dispatch(goBackHistory(0));
+        dispatch(toggleGamer(true));
+        dispatch(deleteHistory(0));
+      }
     }
   };
 };

@@ -1,5 +1,5 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font: 14px 'Century Gothic', Futura, sans-serif;
   margin: 20px;
 }
 
@@ -10,7 +10,7 @@ ul {
 
 .board-row:after {
   clear: both;
-  content: "";
+  content: '';
   display: table;
 }
 
@@ -85,9 +85,7 @@ ul {
   font-size: 5.5vw;
   color: #fff;
   cursor: pointer;
-  /*margin-bottom: 1vw;*/
-  margin-left: 1.5%;
-  margin-top: 2.5vw;
+  padding-top: 1.5vw !important;
 }
 
 .count-row {
@@ -133,6 +131,7 @@ ul {
 
 .game-img {
   margin-top: 1.5vw;
+  padding: 0 1vw !important;
 }
 
 /*emphead css*/
@@ -477,4 +476,14 @@ select {
     margin-bottom: 15% !important;
     margin-top: 15% !important;
   }
+}
+
+.count-row .col-xs-4 {
+  padding: 0;
+}
+
+.board-header .col-xs-4 {
+  padding: 0;
+  width: 30%;
+  margin: 1.5%;
 }

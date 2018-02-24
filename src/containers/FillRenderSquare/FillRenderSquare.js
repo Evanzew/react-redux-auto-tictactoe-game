@@ -1,13 +1,14 @@
-import calculateWinner from "../../normal";
-import { connect } from "react-redux";
+import calculateWinner from '../../normal';
+import calculatAlmost from '../../computerStep';
+import { connect } from 'react-redux';
 import {
   addHistory,
   goBackHistory,
   toggleGamer,
   gameIsOver,
   nextRound
-} from "../../actions/action";
-import RenderSquare from "../../components/RenderSquare/RenderSquare";
+} from '../../actions/action';
+import RenderSquare from '../../components/RenderSquare/RenderSquare';
 
 let historyALl;
 let currentSquares;
@@ -35,10 +36,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onGameClick: i => {
       const history = historyALl;
       const squares = currentSquares;
+
       if (calculateWinner(squares) || squares[i]) {
         return;
       }
-      squares[i] = currentNext ? `X` : "O";
+      squares[i] = `X`;
       dispatch(addHistory(squares));
       dispatch(goBackHistory(history.length));
       dispatch(toggleGamer(!currentNext));
@@ -46,17 +48,47 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       if (calculateWinner(squares)) {
         let successList = calculateWinner(squares);
 
-        currentNext ? player2Count++ : player1Count++;
+        player1Count++;
         dispatch(nextRound(round, player1Count, player2Count));
         dispatch(gameIsOver(true));
-        for (var j = 0; j < successList.length; j++)
-          document.getElementsByClassName("square")[successList[j]].className +=
-            " game-success";
+        for (let j = 0; j < successList.length; j++) {
+          document.getElementsByClassName('square')[successList[j]].className +=
+            ' game-success';
+        }
+        return;
       } else {
-        var list = document.getElementsByClassName("game-success");
+        let list = document.getElementsByClassName('game-success');
         if (list.length !== 0) {
-          for (var k = 0; k < list.length; k++) {
-            list[k].className = "square";
+          for (let k = 0; k < list.length; k++) {
+            list[k].className = 'square';
+          }
+        }
+      }
+      if (history.length === 9) {
+        return;
+      }
+      const nextNum = calculatAlmost(squares);
+      squares[nextNum] = 'O';
+      dispatch(addHistory(squares));
+      dispatch(goBackHistory(history.length + 1));
+      dispatch(toggleGamer(currentNext));
+
+      if (calculateWinner(squares)) {
+        let successList = calculateWinner(squares);
+
+        player2Count++;
+        dispatch(nextRound(round, player1Count, player2Count));
+        dispatch(gameIsOver(true));
+        for (let j = 0; j < successList.length; j++) {
+          document.getElementsByClassName('square')[successList[j]].className +=
+            ' game-success';
+        }
+        return;
+      } else {
+        let list = document.getElementsByClassName('game-success');
+        if (list.length !== 0) {
+          for (let k = 0; k < list.length; k++) {
+            list[k].className = 'square';
           }
         }
       }
