@@ -37,7 +37,7 @@ ul {
 }
 
 .game-board {
-  background-image: url(http://pic2.ooopic.com/11/00/73/57b1OOOPICd0.jpg);
+  background-image: url('./assets/background.jpg');
   padding: 2vw 0;
   border-radius: 5px;
 }
