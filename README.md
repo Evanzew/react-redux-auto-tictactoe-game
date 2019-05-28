@@ -1,10 +1,11 @@
-# react-redux-sample
+# react-redux-auto-tictactoe-game
 
-This is a tictactoe game written by react , redux etc
+- This is a automatic tictactoe game written by react , redux etc
+- You can play thie game with computer
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -16,4 +17,4 @@ npm start
 
 > Game Page Preview
 
-![alt text](/src/assets/preview-game.jpg "Game page preview")
+![alt text](/src/assets/preview-game.jpg 'Game page preview')
